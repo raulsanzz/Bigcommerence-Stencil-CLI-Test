@@ -16,6 +16,21 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                use: {
+                loader: "babel-loader",
+                options: {
+                presets: ["@babel/preset-env", "@babel/preset-react"],
+                },
+                }
+               },
+               {
+                test: /\.css/,
+                loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]' 
+               },
+              
+            {
                 test: /\.js$/,
                 include: /(assets\/js|assets\\js|stencil-utils)/,
                 use: {
@@ -72,6 +87,7 @@ module.exports = {
         }),
     ],
     resolve: {
+        extensions: [".js", ".jsx"],
         alias: {
             jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),

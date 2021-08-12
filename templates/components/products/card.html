@@ -60,15 +60,19 @@
            aria-label="{{name}},{{> components/products/product-aria-label}}"
            {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}
         >
-            <div class="card-img-container">
-                {{> components/common/responsive-img
-                    image=image
-                    class="card-image"
-                    fallback_size=theme_settings.productgallery_size
-                    lazyload=theme_settings.lazyload_mode
-                    default_image=theme_settings.default_image_product
-                }}
-            </div>
+        <div class="card-img-container">
+        <img class="card-image lazyload" data-sizes="auto" src="{{cdn ‘img/loading.svg’}}" data-src="{{getImage image ‘productgallery_size’ (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+        {{#if images.length '>=' 2}}
+        {{#each images}}
+        {{#if @index '==' 1}}
+        <span class="product-additional" data-product-id="">
+        <img class="replace-2x img-responsive" src="{{getImage this 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+        </span>
+        {{/if}}
+        {{/each}}
+        {{/if}}
+        
+        </div>
         </a>
 
         <figcaption class="card-figcaption">
