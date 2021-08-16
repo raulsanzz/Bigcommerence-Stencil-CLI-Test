@@ -1,4 +1,3 @@
-# Deploy Theme to Store when new changes are pushed to master branch
 name: Deploy Theme to Store
 
 on:
